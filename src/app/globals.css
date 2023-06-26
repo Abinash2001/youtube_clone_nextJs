@@ -1,0 +1,25 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 62.5%;
+}
+a {
+    text-decoration: none;
+    line-height: 0;
+}
+p, a, li {
+    font-size: 1.2rem;
+    /*line-height: 1.5;*/
+    /*margin: 2rem 0 4rem 0;*/
+    font-weight: 300;
+    letter-spacing: .05rem;
+    line-height: 1.65;
+}
+.layout_container{
+    display: flex;
+    gap: 1rem;
+    background: black;
+}
