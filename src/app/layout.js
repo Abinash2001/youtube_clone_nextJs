@@ -2,7 +2,6 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import SideNav from "@/app/components/SideNav";
 import Header from "@/app/components/Header";
-import {AppProvider} from "@/app/context";
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -16,13 +15,11 @@ export default function RootLayout({ children }) {
   return (
       <html lang="en">
       <body className={inter.className}>
-      <AppProvider>
       <Header/>
       <div className={"layout_container"}>
           <SideNav/>
           {children}
       </div>
-      </AppProvider>
       </body>
       </html>
   );

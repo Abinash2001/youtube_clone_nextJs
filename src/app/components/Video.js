@@ -1,36 +1,72 @@
-import {AiFillEye} from "react-icons/ai";
 import styles from "@/app/styles/video.module.css"
-import {useContext} from "react";
-import {AppContext} from "@/app/context";
+import {AiFillEye} from "react-icons/ai";
+import moment from "moment";
+import numeral from 'numeral';
+import axios from "axios";
+import {useEffect, useState} from "react";
+import { useRouter} from 'next/navigation'
+const Video = (myData) => {
+    const {id,snippet,contentDetails,statistics}=myData;
 
-const Video = () => {
-    const data=useContext(AppContext);
-    console.log('abinash')
-    console.log(data)
-    // console.log(curElem.snippet)
-    // const {snippet}=curElem;
-    // console.log(snippet)
+    // const res= axios.get(`https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${snippet.channelId}&key=AIzaSyD07G-f9LrntvejUoB1r99q83g0mrC3dOY`)
+
+    const[icon,setIcon]=useState([]);
+    try {
+        useEffect(()=>{
+            axios.get(`https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${snippet.channelId}&key=AIzaSyD07G-f9LrntvejUoB1r99q83g0mrC3dOY`)
+                .then((res)=>
+                    setIcon(res.data.items[0])
+                )
+        },[]);
+    }
+    catch (error){
+        console.log(error)
+    }
+    // console.log(icon.snippet.thumbnails.default.url)
+    // // Extract the channel icon URL from the response
+    // const iconUrl = icon.snippet.thumbnails.default.url;
+
+    const convertDurationToNumeral=(duration)=> {
+        const match = duration.match(/PT(\d+)M(\d+)S/);
+        if (!match || match.length < 3) {
+            return 'Invalid duration format';
+        }
+
+        const minutes = parseInt(match[1], 10);
+        const seconds = parseInt(match[2], 10);
+
+        if (isNaN(minutes) || isNaN(seconds) || minutes < 0 || seconds < 0 || seconds > 59) {
+            return 'Invalid duration values';
+        }
+
+
+        return numeral(minutes).format('00') + ':' + numeral(seconds).format('00');
+    }
+    const router=useRouter()
+    // const navigate = useNavigate();
+    const handleVideoClick=()=> {
+        router.push(`/watchScreen/${id}`)
+    }
+
     return (
         <>
-            {/*{data}*/}
-            {/*<div className={styles.video}>*/}
-            {/*    <div className={styles.top}>*/}
-            {/*        <img src="https://i.ytimg.com/vi/lpsLAP4x-tk/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAAtNfPqLTXUZdAS58gB_5HHM0Abg" alt=""/>*/}
-            {/*        <img src={snippet.thumbnails.default.url} alt=""/>*/}
-            {/*        <span>05:00</span>*/}
-            {/*    </div>*/}
-            {/*    <div className={styles.video_title}>*/}
-            {/*        {snippet.title}*/}
-            {/*    </div>*/}
-            {/*    <div className={styles.video_details}>*/}
-            {/*        <span><AiFillEye className={styles.icon}/> 6M •</span>*/}
-            {/*        <span> 6 days ago</span>*/}
-            {/*    </div>*/}
-            {/*    <div className={styles.video_channel}>*/}
-            {/*        <img src="https://yt3.ggpht.com/ytc/AGIKgqPmVT6_YQd7RIhhoy9So5Jk9Iqw8pzivKCfLPm_Yg=s68-c-k-c0x00ffffff-no-rj" alt=""/>*/}
-            {/*        <p>{snippet.channelTitle}</p>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+            <div className={styles.video} onClick={handleVideoClick}>
+                <div className={styles.top}>
+                    <img src={snippet.thumbnails.medium.url} alt=""/>
+                    <span>{convertDurationToNumeral(contentDetails.duration)}</span>
+                </div>
+                <div className={styles.video_title}>
+                    {snippet.title}
+                </div>
+                <div className={styles.video_details}>
+                    <span><AiFillEye className={styles.icon}/> {numeral(statistics.viewCount).format('0a').toUpperCase()} • </span>
+                    <span> {moment(snippet.publishedAt).fromNow()}</span>
+                </div>
+                <div className={styles.video_channel}>
+                    <img src={icon.snippet?.thumbnails.default.url} alt=""/>
+                    <p>{snippet.channelTitle}</p>
+                </div>
+            </div>
         </>
     );
 };

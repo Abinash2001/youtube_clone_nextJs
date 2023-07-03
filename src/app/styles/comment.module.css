@@ -1,0 +1,15 @@
+.comment{
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    gap: 2rem;
+    border-bottom: .1rem #c2b3b3 solid;
+}
+.comment img{
+    width: 6rem;
+    border-radius: 10rem;
+}
+.userDetails{
+    font-size: 1.5rem;
+    font-weight: 600;
+}

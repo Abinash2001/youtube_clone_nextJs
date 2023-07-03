@@ -1,0 +1,67 @@
+.videoMetaData{
+    /*height: 20rem;*/
+    background-color: rgb(210 210 210 / 22%);
+    border-radius: 1rem;
+    margin: 2rem 0;
+}
+.videoMetaData_top{
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-bottom: .2rem #c2b3b3 solid;
+}
+.view{
+    display: flex;
+    padding: 1rem;
+    width: 100%;
+    justify-content: space-between;
+    font-size: 1.3rem;
+}
+.like{
+    font-size: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+.like span:hover{
+    cursor: pointer;
+    font-size: 2rem;
+}
+.videoMetaData_channel{
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: .2rem #c2b3b3 solid;
+}
+.channel{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.channelDetails{
+    font-size: 1.2rem;
+}
+.subcribe button{
+    width: 10rem;
+    height: 3rem;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+.subcribe button:hover{
+    width: 10.5rem;
+    height: 3.5rem;
+}
+.videoMetaData_description{
+    padding: 1rem;
+    font-size: 1.3rem;
+}
+.showMoreText{
+    text-decoration: none;
+    display: block;
+    margin: 1rem 0;
+    font-weight: bold;
+    cursor: pointer;
+}

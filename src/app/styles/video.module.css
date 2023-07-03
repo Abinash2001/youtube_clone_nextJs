@@ -1,6 +1,6 @@
 .video{
     width: 35rem;
-    height: 32rem;
+    /*height: 32rem;*/
     padding: .5rem;
     cursor: pointer;
     font-weight: bolder;

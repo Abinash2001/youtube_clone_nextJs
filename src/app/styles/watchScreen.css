@@ -1,0 +1,24 @@
+h1{
+    color: white;
+}
+.container{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    overflow: hidden;
+    overflow-y: scroll;
+    color: white;
+    gap: 2rem;
+}
+.leftContaoner{
+    width: 60%;
+}
+.watchScreen{
+    width: 100%;
+    height: 60vh;
+    /*margin-bottom: 2rem;*/
+}
+
+.rightContainer{
+    width: 40%;
+}

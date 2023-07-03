@@ -1,0 +1,47 @@
+.videoHorizontal{
+    display: flex;
+    gap: 1rem;
+    /*align-items: center;*/
+    border-bottom: .1rem #c2b3b3 solid;
+    margin: 1rem;
+    align-items: center;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+.videoHorizontal_left{
+    width: 40%;
+    /*margin-bottom: 1rem;*/
+
+}
+.videoHorizontal_left img{
+    /*width: 100%;*/
+    height: 10rem;
+    border-radius: 1rem
+}
+.videoHorizontal_left span{
+    position: relative;
+    bottom: 2.5rem;
+    left: 9rem;
+    padding: .5rem;
+    background-color: black;
+    border-radius: 1rem;
+    font-size: 1.2rem;
+}
+.videoHorizontal_right{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    width: 100%;
+    font-weight: bold;
+}
+.videoHorizontal_title{
+    font-weight: bold;
+}
+.videoHorizontal_detail{
+    display: flex;
+    align-items: center;
+}
+.icon{
+    width: 2rem;
+    height: 1.5rem;
+}

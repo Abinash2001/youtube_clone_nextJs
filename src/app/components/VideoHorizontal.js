@@ -1,0 +1,69 @@
+import {AiFillEye} from "react-icons/ai";
+import moment from "moment";
+import numeral from 'numeral';
+import styles from "@/app/styles/videoHorizontal.module.css";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import {useRouter} from "next/navigation";
+
+const VideoHorizontal = (videoData) => {
+    // console.log(videoData)
+    const {id,snippet}=videoData
+
+    const [videoLikeDuration,setVideoLikeDuration]=useState([])
+    try {
+        useEffect(()=>{
+            axios.get(`https://youtube.googleapis.com/youtube/v3/videos?part=contentDetails%2Cstatistics&id=${id?.videoId}&key=AIzaSyD07G-f9LrntvejUoB1r99q83g0mrC3dOY`)
+                .then((res)=>
+                    setVideoLikeDuration(res.data.items[0])
+                )
+        },[]);
+    }
+    catch (error){
+        console.log(error)
+    }
+    const convertDurationToNumeral=(duration)=> {
+        const match = duration?.match(/PT(\d+)M(\d+)S/);
+        if (!match || match.length < 3) {
+            return 'Invalid duration format';
+        }
+
+        const minutes = parseInt(match[1], 10);
+        const seconds = parseInt(match[2], 10);
+
+        if (isNaN(minutes) || isNaN(seconds) || minutes < 0 || seconds < 0 || seconds > 59) {
+            return 'Invalid duration values';
+        }
+
+
+        return numeral(minutes).format('00') + ':' + numeral(seconds).format('00');
+    }
+    const router=useRouter()
+    // const navigate = useNavigate();
+    const handleVideoClick=()=> {
+        router.push(`/watchScreen/${videoLikeDuration?.id}`)
+    }
+
+    return (
+        <div className={styles.videoHorizontal} onClick={handleVideoClick}>
+            <div className={styles.videoHorizontal_left}>
+                <img src={snippet?.thumbnails?.default?.url} alt=""/>
+                <span>{convertDurationToNumeral(videoLikeDuration?.contentDetails?.duration)}</span>
+            </div>
+            <div className={styles.videoHorizontal_right}>
+                <p className={styles.videoHorizontal_title}>
+                    {snippet?.title}
+                </p>
+                <div className={styles.videoHorizontal_detail}>
+                    <AiFillEye className={styles.icon}/> {numeral(videoLikeDuration?.statistics?.viewCount).format('0a').toUpperCase()} •
+                    {moment(snippet.publishedAt).fromNow()}
+                </div>
+                <div className="videoHorizontal_channel">
+                    <p>{snippet?.channelTitle}</p>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default VideoHorizontal;
