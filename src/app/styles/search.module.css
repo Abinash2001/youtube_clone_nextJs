@@ -1,0 +1,47 @@
+.container{
+    display: flex;
+    height: 20rem;
+    border-bottom: .1rem #c2b3b3 solid;
+    margin: 1rem;
+    align-items: center;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: white;
+}
+.image{
+    width: 33%;
+    display: flex;
+}
+.image img{
+    border-radius: 1rem
+}
+.image span{
+    position: relative;
+    top: 14rem;
+    right: 6rem;
+    height: 2.5rem;
+    padding: 0.5rem;
+    background-color: black;
+    border-radius: 1rem;
+    font-size: 1.2rem;
+}
+.videoDetails{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    font-weight: bold;
+}
+.videoDetails p{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.details{
+    display: flex;
+    align-items: center;
+}
+.icon{
+    width: 2rem;
+    height: 1.5rem;
+}

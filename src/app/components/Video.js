@@ -26,22 +26,29 @@ const Video = (myData) => {
     // // Extract the channel icon URL from the response
     // const iconUrl = icon.snippet.thumbnails.default.url;
 
-    const convertDurationToNumeral=(duration)=> {
-        const match = duration.match(/PT(\d+)M(\d+)S/);
-        if (!match || match.length < 3) {
+    const convertDurationToNumeral = (duration) => {
+        const match = duration?.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
+        if (!match || match.length < 4) {
             return 'Invalid duration format';
         }
 
-        const minutes = parseInt(match[1], 10);
-        const seconds = parseInt(match[2], 10);
+        const hours = parseInt(match[1]?.replace('H', ''), 10) || 0;
+        const minutes = parseInt(match[2]?.replace('M', ''), 10) || 0;
+        const seconds = parseInt(match[3]?.replace('S', ''), 10) || 0;
 
-        if (isNaN(minutes) || isNaN(seconds) || minutes < 0 || seconds < 0 || seconds > 59) {
+        if (isNaN(hours) || isNaN(minutes) || isNaN(seconds) || minutes < 0 || seconds < 0 || seconds > 59) {
             return 'Invalid duration values';
         }
 
-
-        return numeral(minutes).format('00') + ':' + numeral(seconds).format('00');
-    }
+        const totalMinutes = hours * 60 + minutes;
+        const displayHours = Math.floor(totalMinutes / 60);
+        const displayMinutes = totalMinutes % 60;
+        if(displayHours==0)
+        {
+            return numeral(displayMinutes).format('00') + ':' + numeral(seconds).format('00');
+        }
+        return numeral(displayHours).format('0') + ':' + numeral(displayMinutes).format('00') + ':' + numeral(seconds).format('00');
+    };
     const router=useRouter()
     // const navigate = useNavigate();
     const handleVideoClick=()=> {

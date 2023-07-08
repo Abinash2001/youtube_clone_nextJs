@@ -11,38 +11,62 @@ const VideoMetaData = (data) => {
     const {contentDetails,snippet,statistics}=data;
     // console.log(data)
 
+
     // fetch data of channel icon
-    const[icon,setIcon]=useState([]);
-    try {
-        useEffect(()=>{
-            axios.get(`https://www.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&id=${snippet?.channelId}&key=AIzaSyD07G-f9LrntvejUoB1r99q83g0mrC3dOY`)
-                .then((res)=>
-                        setIcon(res?.data?.items[0])
-                    // console.log(res?.data?.items)
-                )
-        },[]);
-    }
-    catch (error){
-        console.log(error)
-    }
-    // console.log(icon[0]?.snippet?.thumbnails?.default?.url)
+    // const[icon,setIcon]=useState([]);
+    // try {
+    //     useEffect(()=>{
+    //         axios.get(`https://www.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&id=${snippet?.channelId}&key=AIzaSyD07G-f9LrntvejUoB1r99q83g0mrC3dOY`)
+    //             .then((res)=>
+    //                 {
+    //                     if (res.data && res.data.items && res.data.items.length > 0) {
+    //                         setIcon(res.data.items);
+    //                         // console.log(res.data.items[0]?.snippet?.thumbnails?.default?.url)
+    //                     }
+    //                 }
+    //             )
+    //     },[]);
+    // }
+    // catch (error){
+    //     console.log(error)
+    // }
+    const [icon, setIcon] = useState([]);
 
-    // fetch data and check channel is subcribe or not
-    // const [subcribe,setSubcribe]=useState([])
-    // useEffect(()=>{
-    //     const accessToken = 'AIzaSyD07G-f9LrntvejUoB1r99q83g0mrC3dOY';
-    //
-    //     const headers = {
-    //         Authorization: `Bearer ${accessToken}`,
-    //     };
-    //     axios.get(`https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&forChannelId=${snippet?.channelId}&mine=true&key=AIzaSyD07G-f9LrntvejUoB1r99q83g0mrC3dOY`,
-    //         { headers })
-    //         .then((response)=>
-    //             // setSubcribe(response.data.items)
-    //             console.log(response)
-    //         )
-    // },[])
-
+    useEffect(() => {
+        axios
+            .get(
+                `https://www.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&id=${snippet?.channelId}&key=AIzaSyD07G-f9LrntvejUoB1r99q83g0mrC3dOY`
+            )
+            .then((res) => {
+                if (res.data && res.data.items && res.data.items.length > 0) {
+                    setIcon(res.data.items);
+                } else {
+                    setIcon([]);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                setIcon([]);
+            });
+    }, [snippet?.channelId]);
+    useEffect(() => {
+        try {
+            axios
+                .get(`https://www.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&id=${snippet?.channelId}&key=AIzaSyD07G-f9LrntvejUoB1r99q83g0mrC3dOY`)
+                .then((res) => {
+                    if (res.data && res.data.items && res.data.items.length > 0) {
+                        setIcon(res.data.items[0]);
+                        // console.log(res.data.items[0]?.snippet?.thumbnails?.default?.url);
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        } catch (error) {
+            console.log(error);
+        }
+    }, []);
+// console.log(icon.data)
 
     return (
         <>
@@ -65,7 +89,7 @@ const VideoMetaData = (data) => {
                 </div>
                 <div className={styles.videoMetaData_channel}>
                     <div className={styles.channel}>
-                        <img src={icon?.snippet?.thumbnails?.default?.url} alt=""/>
+                        <img src={icon[0]?.snippet?.thumbnails?.default?.url} alt="icon"/>
                         <div className={styles.channelDetails}>
                             <h2>{snippet?.channelTitle}</h2>
                             {/*<span>{numeral(icon.statistics?.subscriberCount).format('0a').toUpperCase()} Subcriber</span>*/}

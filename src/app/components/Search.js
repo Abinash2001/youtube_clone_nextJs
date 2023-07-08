@@ -1,15 +1,14 @@
+import styles from "@/app/styles/search.module.css"
 import {AiFillEye} from "react-icons/ai";
-import moment from "moment";
-import numeral from 'numeral';
-import styles from "@/app/styles/videoHorizontal.module.css";
+import numeral from "numeral";
+import moment from "moment/moment";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {useRouter} from "next/navigation";
 
-const VideoHorizontal = (videoData) => {
-    // console.log(videoData)
-    const {id,snippet}=videoData
-
+const Search = (searchData) => {
+    const {id,snippet}=searchData
+    // console.log(searchData)
     const [videoLikeDuration,setVideoLikeDuration]=useState([])
     try {
         useEffect(()=>{
@@ -49,20 +48,19 @@ const VideoHorizontal = (videoData) => {
     const router=useRouter()
     // const navigate = useNavigate();
     const handleVideoClick=()=> {
-        router.push(`/watchScreen/${videoLikeDuration?.id}`)
+        router.push(`/watchScreen/${id?.videoId}`)
     }
-
     return (
-        <div className={styles.videoHorizontal} onClick={handleVideoClick}>
-            <div className={styles.videoHorizontal_left}>
-                <img src={snippet?.thumbnails?.default?.url} alt=""/>
+        <div className={styles.container} onClick={handleVideoClick}>
+            <div className={styles.image}>
+                <img src={snippet?.thumbnails?.medium?.url} alt=""/>
                 <span>{convertDurationToNumeral(videoLikeDuration?.contentDetails?.duration)}</span>
             </div>
-            <div className={styles.videoHorizontal_right}>
-                <p className={styles.videoHorizontal_title}>
+            <div className={styles.videoDetails}>
+                <p className={styles.title}>
                     {snippet?.title}
                 </p>
-                <div className={styles.videoHorizontal_detail}>
+                <div className={styles.details}>
                     <AiFillEye className={styles.icon}/> {numeral(videoLikeDuration?.statistics?.viewCount).format('0a').toUpperCase()} •
                     {moment(snippet.publishedAt).fromNow()}
                 </div>
@@ -74,4 +72,4 @@ const VideoHorizontal = (videoData) => {
     );
 };
 
-export default VideoHorizontal;
+export default Search;

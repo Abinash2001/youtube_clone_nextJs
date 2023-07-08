@@ -3,22 +3,36 @@ import styles from "@/app/styles/videoComments.module.css"
 import Comment from "@/app/components/Comment";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import Video from "@/app/components/Video";
 const VideoComment = (data) => {
+    // console.log(data?.snippet?.channelId)
     const[comment,setComment]=useState([]);
-    try {
-        useEffect(()=>{
-            axios.get(`https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&videoId=${data?.id}&key=AIzaSyD07G-f9LrntvejUoB1r99q83g0mrC3dOY`)
-                .then((resComm)=>
-                        setComment(resComm?.data?.items)
-                    // console.log(resComm.data.items)
+    // try {
+    //     useEffect(()=>{
+    //         axios.get(`https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&videoId=${data?.id}&key=AIzaSyD07G-f9LrntvejUoB1r99q83g0mrC3dOY`)
+    //             .then((resComm)=>
+    //                     setComment(resComm?.data?.items)
+    //                 // console.log(resComm.data.items)
+    //             )
+    //     },[]);
+    // }
+    // catch (error){
+    //     console.log(error)
+    // }
+    useEffect(() => {
+        if (data?.id) {
+            axios
+                .get(
+                    `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&videoId=${data?.id}&key=AIzaSyD07G-f9LrntvejUoB1r99q83g0mrC3dOY`
                 )
-        },[]);
-    }
-    catch (error){
-        console.log(error)
-    }
-    // console.log(comment)
+                .then((resComm) => {
+                    setComment(resComm?.data?.items);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    }, [data?.id]);
+    console.log(comment)
     return (
         <>
             <div className={styles.comments}>
