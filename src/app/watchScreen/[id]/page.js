@@ -10,7 +10,6 @@ import {useEffect, useState} from "react";
 import Video from "@/app/components/Video";
 const Page = () => {
     const {id}=useParams()
-    console.log(id)
     // fetch data for for video detail
     const[data,setData]=useState([]);
     try {
@@ -24,8 +23,7 @@ const Page = () => {
     catch (error){
         console.log(error)
     }
-    console.log(data);
-    const {contentDetails,snippet,statistics}=data
+    const {snippet}=data
 
 
     // fetch data for for related video detail
@@ -62,7 +60,7 @@ const Page = () => {
                 <div className="rightContainer">
                     {
                         relatedVideo.map((curElem,index)=>{
-                            return <VideoHorizontal {...curElem}/>
+                            return <VideoHorizontal key={index}{...curElem}/>
                         })
                     }
                 </div>

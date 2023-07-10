@@ -8,7 +8,6 @@ import {useRouter} from "next/navigation";
 
 const Search = (searchData) => {
     const {id,snippet}=searchData
-    // console.log(searchData)
     const [videoLikeDuration,setVideoLikeDuration]=useState([])
     try {
         useEffect(()=>{
@@ -46,7 +45,6 @@ const Search = (searchData) => {
     };
 
     const router=useRouter()
-    // const navigate = useNavigate();
     const handleVideoClick=()=> {
         router.push(`/watchScreen/${id?.videoId}`)
     }

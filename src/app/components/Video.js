@@ -22,9 +22,6 @@ const Video = (myData) => {
     catch (error){
         console.log(error)
     }
-    // console.log(icon.snippet.thumbnails.default.url)
-    // // Extract the channel icon URL from the response
-    // const iconUrl = icon.snippet.thumbnails.default.url;
 
     const convertDurationToNumeral = (duration) => {
         const match = duration?.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
@@ -50,7 +47,6 @@ const Video = (myData) => {
         return numeral(displayHours).format('0') + ':' + numeral(displayMinutes).format('00') + ':' + numeral(seconds).format('00');
     };
     const router=useRouter()
-    // const navigate = useNavigate();
     const handleVideoClick=()=> {
         router.push(`/watchScreen/${id}`)
     }

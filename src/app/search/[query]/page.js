@@ -7,7 +7,6 @@ import VideoHorizontal from "@/app/components/VideoHorizontal";
 import Search from "@/app/components/Search";
 const Page = () => {
     const {query}=useParams()
-    console.log(query)
     const[searchData,setSearchData]=useState([]);
     try {
         useEffect(()=>{
@@ -21,7 +20,6 @@ const Page = () => {
     catch (error){
         console.log(error)
     }
-    // console.log(searchData)
     return (
         <>
             <div>

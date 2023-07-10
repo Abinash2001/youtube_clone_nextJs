@@ -9,27 +9,8 @@ import axios from "axios";
 
 const VideoMetaData = (data) => {
     const {contentDetails,snippet,statistics}=data;
-    // console.log(data)
-
 
     // fetch data of channel icon
-    // const[icon,setIcon]=useState([]);
-    // try {
-    //     useEffect(()=>{
-    //         axios.get(`https://www.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&id=${snippet?.channelId}&key=AIzaSyD07G-f9LrntvejUoB1r99q83g0mrC3dOY`)
-    //             .then((res)=>
-    //                 {
-    //                     if (res.data && res.data.items && res.data.items.length > 0) {
-    //                         setIcon(res.data.items);
-    //                         // console.log(res.data.items[0]?.snippet?.thumbnails?.default?.url)
-    //                     }
-    //                 }
-    //             )
-    //     },[]);
-    // }
-    // catch (error){
-    //     console.log(error)
-    // }
     const [icon, setIcon] = useState([]);
 
     useEffect(() => {

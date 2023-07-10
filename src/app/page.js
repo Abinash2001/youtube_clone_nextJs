@@ -19,7 +19,6 @@ const Page =() => {
     catch (error){
         console.log(error)
     }
-    // console.log(myData)
     return (
         <>
             {

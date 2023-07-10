@@ -7,7 +7,6 @@ import axios from "axios";
 import {useRouter} from "next/navigation";
 
 const VideoHorizontal = (videoData) => {
-    // console.log(videoData)
     const {id,snippet}=videoData
 
     const [videoLikeDuration,setVideoLikeDuration]=useState([])
