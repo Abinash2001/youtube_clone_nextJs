@@ -33,6 +33,9 @@ const VideoComment = (data) => {
         }
     }, [data?.id]);
     console.log(comment)
+
+    const [visibleComments, setVisibleComments] = useState(0);
+    const [showAllComments, setShowAllComments] = useState(false);
     return (
         <>
             <div className={styles.comments}>
@@ -47,9 +50,23 @@ const VideoComment = (data) => {
                 </div>
                 <div className="comment_list">
                     {
-                        comment.map((curElem)=>{
-                            return <Comment {...curElem}/>
+                        comment.slice(0, visibleComments).map((curElem) => {
+                            return <Comment {...curElem} />;
                         })
+                    }
+                    {
+                        window.innerWidth <= 884 && visibleComments < comment.length && (
+                            <button onClick={() => setVisibleComments(visibleComments + comment.length)}>
+                                Show More
+                            </button>
+                        )
+                    }
+                    {
+                        visibleComments === comment.length && (
+                            <button onClick={() => setVisibleComments(0)}>
+                                Show Less
+                            </button>
+                        )
                     }
                 </div>
             </div>

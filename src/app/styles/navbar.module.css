@@ -6,21 +6,23 @@
     display: flex;
     padding: 0 2rem;
     justify-content: space-between;
-    align-content: center;
-    /*position:;*/
+    align-items: center;
 }
 .start,.end{
     width: 15%;
     height: 100%;
     display: flex;
     justify-content: space-around;
-    align-content: center;
+    align-items: center;
 }
 .icon{
     color: white;
     width: 3rem;
-    height: 100%;
+    height: 3rem;
     cursor: pointer;
+}
+.menuIcon{
+    display: none;
 }
 .center{
     width: 30%;
@@ -31,7 +33,7 @@
 }
 .search{
     display: flex;
-    width: 90%;
+    width: 100%;
     height: 100%;
     justify-content: center;
     align-items: center;
@@ -41,24 +43,58 @@
     padding: 1rem 1.5rem;
     border: none;
     font-size: 1.5rem;
-    border-radius: 2rem 0 2rem;
+    border-radius: 2rem 0 0;
     outline: none;
     font-weight: bold;
     /*background: white;*/
 }
 .search button{
-    left: -49px;
-    height: 3.6rem;
+    height: 3.8rem;
     border-radius: 0 0 2rem;
     border: none;
     position: relative;
     padding: 0.9rem;
-    /*background: white;*/
 }
 .search_icon{
     height: 2rem;
     width: 3rem;
     border: none;
     cursor: pointer;
-    /*background: white;*/
+}
+
+
+@media (max-width: 884px) {
+    .start{
+        width: 20%;
+    }
+    .end{
+        width: 25%;
+        gap: .5rem;
+    }
+    .start image{
+        width: 14rem;
+        height: 20rem;
+    }
+    .center{
+        width: 50%;
+    }
+}
+@media (max-width: 430px){
+    .navbar{
+        padding: 0 1rem;
+    }
+    .menuIcon{
+        display: block;
+    }
+    .search input{
+        border-radius: 2rem 0 0;
+        font-size: 1.3rem;
+        font-weight: unset;
+        height: 3rem;
+    }
+    .search button{
+        height: 3rem;
+        padding: 0;
+    }
+
 }

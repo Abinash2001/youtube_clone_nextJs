@@ -1,8 +1,10 @@
+import React from "react";
 
 const History = () => {
     return (
         <>
-            <h1>History</h1>
+            <h1>History (under Process)</h1>
+            <h1>go to home</h1>
         </>
     );
 };

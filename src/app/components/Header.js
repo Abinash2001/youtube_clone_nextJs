@@ -12,12 +12,14 @@ const Header = () => {
         e.preventDefault()
         router.push(`/search/${input}`)
     }
-
+    const handleOnClick=()=> {
+        router.push("/")
+    }
     return (
         <nav className={styles.navbar}>
             <div className={styles.start}>
-                <AiOutlineAlignCenter className={styles.icon}/>
-                <Image src="/logo1.png"  alt="my logo" width={200} height={70}/>
+                {/*<AiOutlineAlignCenter className={`${styles.icon} ${styles.menuIcon}`}/>*/}
+                <Image className={styles.image} src="/logo1.png"  alt="my logo" width={200} height={70}/>
             </div>
             <div className={styles.center}>
                 <form className={styles.search} onSubmit={handleSubmit}>
@@ -29,6 +31,7 @@ const Header = () => {
                 <AiOutlineVideoCameraAdd className={styles.icon}/>
                 <AiOutlineBell className={styles.icon}/>
                 <AiOutlineUser className={styles.icon}/>
+                <AiOutlineAlignCenter className={`${styles.icon} ${styles.menuIcon}`} onClick={handleOnClick}/>
             </div>
 
         </nav>

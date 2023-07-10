@@ -2,6 +2,7 @@
     height: 90vh;
     width: 20%;
     background: black;
+    /*display: none;*/
     /*position: absolute;*/
     /*z-index: 999;*/
 }
@@ -30,7 +31,6 @@
     height: 100%;
     cursor: pointer;
 }
-
 @media (max-width: 1180px) {
     .container{
         width: 25%;
@@ -44,6 +44,12 @@
     /*    !*display: none;*!*/
     /*}*/
     .navbarLink span{
+        display: none;
+    }
+}
+
+@media (max-width: 430px) {
+    .container{
         display: none;
     }
 }

@@ -14,13 +14,13 @@ const SideNav = () => {
                    </Link>
                </div>
                <div className={styles.navbarItem}>
-                   <Link href="/" className={styles.navbarLink}>
+                   <Link href="/subscription" className={styles.navbarLink}>
                        <MdOutlineSubscriptions className={styles.icon}/>
                        <span>Subscription</span>
                    </Link>
                </div>
                <div className={styles.navbarItem}>
-                   <Link href="/" className={styles.navbarLink}>
+                   <Link href="/library" className={styles.navbarLink}>
                        <MdOutlineVideoLibrary className={styles.icon}/>
                        <span>Library</span>
                    </Link>
@@ -32,7 +32,7 @@ const SideNav = () => {
                    </Link>
                </div>
                <div className={styles.navbarItem}>
-                   <Link href="/" className={styles.navbarLink}>
+                   <Link href="/yourVideos" className={styles.navbarLink}>
                        <AiOutlinePlayCircle className={styles.icon}/>
                        <span>Your Videos</span>
                    </Link>
