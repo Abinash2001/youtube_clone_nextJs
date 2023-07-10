@@ -50,8 +50,8 @@ const VideoComment = (data) => {
                 </div>
                 <div className="comment_list">
                     {
-                        comment.slice(0, visibleComments).map((curElem) => {
-                            return <Comment {...curElem} />;
+                        comment.slice(0, visibleComments).map((curElem,index) => {
+                            return <Comment key={index} {...curElem} />;
                         })
                     }
                     {
