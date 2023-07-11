@@ -4,7 +4,7 @@ import Video from "@/app/components/Video";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
-const url=process.env.NEXT_JS_YT_KEY;
+// const url=process.env.NEXT_JS_YT_KEY;
 
 const Page =() => {
     const[myData,setMyData]=useState([]);

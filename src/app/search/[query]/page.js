@@ -25,7 +25,7 @@ const Page = () => {
             <div>
                 {
                     searchData.map((curElem,index)=>{
-                        return <Search {...curElem}/>
+                        return <Search key={index}{...curElem}/>
                     })
                 }
             </div>
