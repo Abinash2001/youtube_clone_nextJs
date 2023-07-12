@@ -10,6 +10,7 @@ const Header = () => {
     const router=useRouter()
     const handleSubmit=(e)=> {
         e.preventDefault()
+        setInput("")
         router.push(`/search/${input}`)
     }
     const handleOnClick=()=> {
